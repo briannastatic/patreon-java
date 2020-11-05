@@ -6,16 +6,15 @@ import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Type("reward")
-public class Reward extends BaseResource {
+@Type("tier")
+public class Tier extends BaseResource {
   
-  public enum RewardField implements Field {
+  public enum TierField implements Field {
     AmountCents("amount_cents", true),
     CreatedAt("created_at", true),
     Description("description", true),
@@ -25,22 +24,24 @@ public class Reward extends BaseResource {
     UserLimit("user_limit", true),
     EditedAt("edited_at", true),
     PatronCount("patron_count", true),
+    PostCount("post_count", true),
     Published("published", true),
     PublishedAt("published_at", true),
     ImageUrl("image_url", true),
     DiscordRoleIds("discord_role_ids", true),
     Title("title", true),
-    UnpublishedAt("unpublished_at", true),;
+    UnpublishedAt("unpublished_at", true),
+    ;
 
     private final String propertyName;
     private final boolean isDefault;
 
-    RewardField(String propertyName, boolean isDefault) {
+    TierField(String propertyName, boolean isDefault) {
       this.propertyName = propertyName;
       this.isDefault = isDefault;
     }
 
-    public static Collection<RewardField> getDefaultFields() {
+    public static Collection<TierField> getDefaultFields() {
       return Arrays.stream(values()).filter(Field::isDefault).collect(Collectors.toList());
     }
 
@@ -55,72 +56,78 @@ public class Reward extends BaseResource {
     }
   }
 
-  private int amount_cents;
-  private String created_at;
+  private int amountCents;
+  private String createdAt;
   private String description;
   private float remaining;
-  private boolean requires_shipping;
+  private boolean requiresShipping;
   private String url;
-  private Integer user_limit;
-  private String edited_at;
-  private int patron_count;
+  private Integer userLimit;
+  private String editedAt;
+  private int patronCount;
+  private int postCount;
   private boolean published;
-  private String published_at;
-  private String image_url;
-  private List<String> discord_role_ids;
+  private String publishedAt;
+  private String imageUrl;
+  private List<String> discordRoleIds;
   private String title;
-  private String unpublished_at;
-
-  @Relationship("creator")
-  private User creator;
+  private String unpublishedAt;
 
   @Relationship("campaign")
   private Campaign campaign;
 
-  public Reward(
-                 @JsonProperty("amount_cents") int amount_cents,
-                 @JsonProperty("created_at") String created_at,
+  @Relationship("tier_image")
+  private Media tierImage;
+
+  @Relationship("benefits")
+  private List<Benefit> benefits;
+
+  public Tier(
+                 @JsonProperty("amount_cents") int amountCents,
+                 @JsonProperty("created_at") String createdAt,
                  @JsonProperty("description") String description,
                  @JsonProperty("remaining") float remaining,
-                 @JsonProperty("requires_shipping") boolean requires_shipping,
+                 @JsonProperty("requires_shipping") boolean requiresShipping,
                  @JsonProperty("url") String url,
-                 @JsonProperty("user_limit") Integer user_limit,
-                 @JsonProperty("edited_at") String edited_at,
-                 @JsonProperty("patron_count") int patron_count,
+                 @JsonProperty("user_limit") Integer userLimit,
+                 @JsonProperty("edited_at") String editedAt,
+                 @JsonProperty("patron_count") int patronCount,
+                 @JsonProperty("post_count") int postCount,
                  @JsonProperty("published") boolean published,
-                 @JsonProperty("published_at") String published_at,
-                 @JsonProperty("image_url") String image_url,
-                 @JsonProperty("discord_role_ids") List<String> discord_role_ids,
+                 @JsonProperty("published_at") String publishedAt,
+                 @JsonProperty("image_url") String imageUrl,
+                 @JsonProperty("discord_role_ids") List<String> discordRoleIds,
                  @JsonProperty("title") String title,
-                 @JsonProperty("unpublished_at") String unpublished_at,
-                 @JsonProperty("creator") User creator,
-                 @JsonProperty("campaign") Campaign campaign
+                 @JsonProperty("unpublished_at") String unpublishedAt,
+                 @JsonProperty("campaign") Campaign campaign,
+                 @JsonProperty("tier_image") Media tierImage,
+                 @JsonProperty("benefits") List<Benefit> benefits
   ) {
-    this.amount_cents = amount_cents;
-    this.created_at = created_at;
+    this.amountCents = amountCents;
+    this.createdAt = createdAt;
     this.description = description;
     this.remaining = remaining;
-    this.requires_shipping = requires_shipping;
+    this.requiresShipping = requiresShipping;
     this.url = url;
-    this.user_limit = user_limit;
-    this.edited_at = edited_at;
-    this.patron_count = patron_count;
+    this.userLimit = userLimit;
+    this.editedAt = editedAt;
+    this.patronCount = patronCount;
+    this.postCount = postCount;
     this.published = published;
-    this.published_at = published_at;
-    this.image_url = image_url;
-    this.discord_role_ids = discord_role_ids;
+    this.publishedAt = publishedAt;
+    this.imageUrl = imageUrl;
+    this.discordRoleIds = discordRoleIds;
     this.title = title;
-    this.unpublished_at = unpublished_at;
-    this.creator = creator;
+    this.unpublishedAt = unpublishedAt;
     this.campaign = campaign;
   }
 
   public int getAmountCents() {
-    return amount_cents;
+    return amountCents;
   }
 
   public String getCreatedAt() {
-    return created_at;
+    return createdAt;
   }
 
   public String getDescription() {
@@ -132,7 +139,7 @@ public class Reward extends BaseResource {
   }
 
   public boolean isRequiresShipping() {
-    return requires_shipping;
+    return requiresShipping;
   }
 
   public String getUrl() {
@@ -140,23 +147,35 @@ public class Reward extends BaseResource {
   }
 
   public Integer getUserLimit() {
-    return user_limit;
+    return userLimit;
   }
 
   public String getEditedAt() {
-    return edited_at;
+    return editedAt;
+  }
+
+  public int getPatronCount() {
+    return patronCount;
+  }
+
+  public int getPostCount() {
+    return postCount;
+  }
+
+  public boolean isPublished() {
+    return published;
   }
 
   public String getPublishedAt() {
-    return published_at;
+    return publishedAt;
   }
 
   public String getImageUrl() {
-    return image_url;
+    return imageUrl;
   }
 
   public List<String> getDiscordRoleIds() {
-    return discord_role_ids;
+    return discordRoleIds;
   }
 
   public String getTitle() {
@@ -164,22 +183,18 @@ public class Reward extends BaseResource {
   }
 
   public String getUnpublishedAt() {
-    return unpublished_at;
-  }
-
-  public User getCreator() {
-    return creator;
+    return unpublishedAt;
   }
 
   public Campaign getCampaign() {
     return campaign;
   }
 
-  public int getPatronCount() {
-    return patron_count;
+  public Media getTierImage() {
+    return tierImage;
   }
 
-  public boolean isPublished() {
-    return published;
+  public List<Benefit> getBenefits() {
+    return benefits;
   }
 }
