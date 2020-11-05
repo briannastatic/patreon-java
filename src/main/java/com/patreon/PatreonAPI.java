@@ -106,8 +106,8 @@ public class PatreonAPI {
    */
   public JSONAPIDocument<List<Campaign>> fetchCampaigns() throws IOException {
     String path = new URIBuilder()
-                    .setPath("current_user/campaigns")
-                    .addParameter("include", "rewards,creator,goals")
+                    .setPath("campaigns")
+                    .addParameter("include", "tiers,creator,benefits,goals")
                     .toString();
     return converter.readDocumentCollection(
       getDataStream(path),

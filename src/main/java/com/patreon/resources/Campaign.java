@@ -17,32 +17,32 @@ import java.util.stream.Collectors;
 public class Campaign extends BaseResource {
   
   public enum CampaignField implements Field {
-    PledgeSum("pledge_sum", true),
-    CreationName("creation_name", true),
-    DiscordServerId("discor_server_id", true),
     CreatedAt("created_at", true),
-    IsPlural("is_plural", true),
-    MainVideoUrl("main_video_url", true),
-    IsNsfw("is_nsfw", true),
-    IsMonthly("is_monthly", true),
-    PublishedAt("published_at", true),
-    EarningsVisibility("earnings_visibility", true),
-    OutstandingPaymentAmountCents("outstanding_payment_amount_cents", true),
+    CreationName("creation_name", true),
+    DiscordServerId("discord_server_id", true),
+    GoogleAnalyticsId("google_analytics_id", true),
     ImageSmallUrl("image_small_url", true),
-    Summary("summary", true),
-    ThanksMsg("thanks_msg", true),
     ImageUrl("image_url", true),
-    CreationCount("creation_count", true),
-    OneLiner("one_liner", true),
     IsChargedImmediately("is_charged_immediately", true),
-    PatronCount("patron_count", true),
-    DisplayPatronGoals("display_patron_goals", true),
-    PledgeUrl("pledge_url", true),
-    PayPerName("pay_per_name", true),
-    ThanksEmbed("thanks_embed", true),
+    IsMonthly("is_monthly", true),
+    IsNsfw("is_nsfw", true),
     MainVideoEmbed("main_video_embed", true),
+    MainVideoUrl("main_video_url", true),
+    OneLiner("one_liner", true),
+    PatronCount("patron_count", true),
+    PayPerName("pay_per_name", true),
+    PledgeUrl("pledge_url", true),
+    PublishedAt("published_at", true),
+    Summary("summary", true),
+    ThanksEmbed("thanks_embed", true),
+    ThanksMsg("thanks_msg", true),
     ThanksVideoUrl("thanks_video_url", true),
-    About("about", true),
+    HasRss("has_rss", true),
+    HasSentRssNotify("has_sent_rss_notify", true),
+    RssFeedTitle("rss_feed_title", true),
+    RssArtworkUrl("rss_artwork_url", true),
+    ShowEarnings("show_earnings", true),
+    URL("url", true),
     ;
 
     private final String propertyName;
@@ -68,111 +68,111 @@ public class Campaign extends BaseResource {
     }
   }
 
-  private int pledgeSum;
-  private String creationName;
   private String createdAt;
-  private String pledgeUrl;
-  private String payPerName;
-  private String oneLiner;
-  private String imageUrl;
+  private String creationName;
+  private String discordServerId;
+  private String googleAnalyticsId;
   private String imageSmallUrl;
-  private String summary;
-  private String about;
+  private String imageUrl;
+  private boolean isChargedImmediately;
+  private boolean isMonthly;
+  private boolean isNsfw;
   private String mainVideoEmbed;
   private String mainVideoUrl;
-  private String thanksMsg;
-  private String thanksEmbed;
-  private String thanksVideoUrl;
-  private String publishedAt;
-  private String earningsVisibility;
-  private boolean isMonthly;
-  private boolean isChargedImmediately;
-  private boolean isNsfw;
+  private String oneLiner;
   private int patronCount;
-  private int outstandingPaymentAmountCents;
-  private int creationCount;
-  private boolean isPlural;
-  private boolean displayPatronGoals;
-  private String discordServerId;
+  private String payPerName;
+  private String pledgeUrl;
+  private String publishedAt;
+  private String summary;
+  private String thanksEmbed;
+  private String thanksMsg;
+  private String thanksVideoUrl;
+  private boolean hasRss;
+  private boolean hasSentRssNotify;
+  private String rssFeedTitle;
+  private String rssArtworkUrl;
+  private boolean showEarnings;
+  private String url;
 
-  @Relationship("pledges")
-  private List<Pledge> pledges;
+  @Relationship("tiers")
+  private List<Tier> tiers;
 
   @Relationship("creator")
   private User creator;
 
-  @Relationship("rewards")
-  private List<Reward> rewards;
+  @Relationship("benefits")
+  private List<Benefit> benefits;
 
   @Relationship("goals")
   private List<Goal> goals;
 
   public Campaign(
-                   @JsonProperty("pledge_sum") int pledgeSum,
-                   @JsonProperty("creation_name") String creationName,
-                   @JsonProperty("discor_server_id") String discordServerId,
                    @JsonProperty("created_at") String createdAt,
-                   @JsonProperty("is_plural") boolean isPlural,
-                   @JsonProperty("main_video_url") String mainVideoUrl,
-                   @JsonProperty("is_nsfw") boolean isNsfw,
-                   @JsonProperty("is_monthly") boolean isMonthly,
-                   @JsonProperty("published_at") String publishedAt,
-                   @JsonProperty("earnings_visibility") String earningsVisibility,
-                   @JsonProperty("outstanding_payment_amount_cents") int outstandingPaymentAmountCents,
+                   @JsonProperty("creation_name") String creationName,
+                   @JsonProperty("discord_server_id") String discordServerId,
+                   @JsonProperty("google_analytics_id") String googleAnalyticsId,
                    @JsonProperty("image_small_url") String imageSmallUrl,
-                   @JsonProperty("summary") String summary,
-                   @JsonProperty("thanks_msg") String thanksMsg,
                    @JsonProperty("image_url") String imageUrl,
-                   @JsonProperty("creation_count") int creationCount,
-                   @JsonProperty("one_liner") String oneLiner,
                    @JsonProperty("is_charged_immediately") boolean isChargedImmediately,
-                   @JsonProperty("patron_count") int patronCount,
-                   @JsonProperty("display_patron_goals") boolean displayPatronGoals,
-                   @JsonProperty("pledge_url") String pledgeUrl,
-                   @JsonProperty("pay_per_name") String payPerName,
-                   @JsonProperty("thanks_embed") String thanksEmbed,
+                   @JsonProperty("is_monthly") boolean isMonthly,
+                   @JsonProperty("is_nsfw") boolean isNsfw,
                    @JsonProperty("main_video_embed") String mainVideoEmbed,
+                   @JsonProperty("main_video_url") String mainVideoUrl,
+                   @JsonProperty("one_liner") String oneLiner,
+                   @JsonProperty("patron_count") int patronCount,
+                   @JsonProperty("pay_per_name") String payPerName,
+                   @JsonProperty("pledge_url") String pledgeUrl,
+                   @JsonProperty("published_at") String publishedAt,
+                   @JsonProperty("summary") String summary,
+                   @JsonProperty("thanks_embed") String thanksEmbed,
+                   @JsonProperty("thanks_msg") String thanksMsg,
                    @JsonProperty("thanks_video_url") String thanksVideoUrl,
-                   @JsonProperty("about") String about,
-                   @JsonProperty("pledges") List<Pledge> pledges,
+                   @JsonProperty("has_rss") boolean hasRss,
+                   @JsonProperty("has_sent_rss_notify") boolean hasSentRssNotify,
+                   @JsonProperty("rss_feed_title") String rssFeedTitle,
+                   @JsonProperty("rss_artwork_url") String rssArtworkUrl,
+                   @JsonProperty("show_earnings") boolean showEarnings,
+                   @JsonProperty("url") String url,
+                   @JsonProperty("tiers") List<Tier> tiers,
                    @JsonProperty("creator") User creator,
-                   @JsonProperty("rewards") List<Reward> rewards,
+                   @JsonProperty("benefits") List<Benefit> benefits,
                    @JsonProperty("goals") List<Goal> goals
   ) {
-    this.pledgeSum = pledgeSum;
+    this.createdAt = createdAt;
     this.creationName = creationName;
     this.discordServerId = discordServerId;
-    this.createdAt = createdAt;
-    this.isPlural = isPlural;
-    this.mainVideoUrl = mainVideoUrl;
-    this.isNsfw = isNsfw;
-    this.isMonthly = isMonthly;
-    this.publishedAt = publishedAt;
-    this.earningsVisibility = earningsVisibility;
-    this.outstandingPaymentAmountCents = outstandingPaymentAmountCents;
+    this.googleAnalyticsId = googleAnalyticsId;
     this.imageSmallUrl = imageSmallUrl;
-    this.summary = summary;
-    this.thanksMsg = thanksMsg;
     this.imageUrl = imageUrl;
-    this.creationCount = creationCount;
-    this.oneLiner = oneLiner;
     this.isChargedImmediately = isChargedImmediately;
-    this.patronCount = patronCount;
-    this.displayPatronGoals = displayPatronGoals;
-    this.pledgeUrl = pledgeUrl;
-    this.payPerName = payPerName;
-    this.thanksEmbed = thanksEmbed;
+    this.isMonthly = isMonthly;
+    this.isNsfw = isNsfw;
     this.mainVideoEmbed = mainVideoEmbed;
+    this.mainVideoUrl = mainVideoUrl;
+    this.oneLiner = oneLiner;
+    this.patronCount = patronCount;
+    this.payPerName = payPerName;
+    this.pledgeUrl = pledgeUrl;
+    this.publishedAt = publishedAt;
+    this.summary = summary;
+    this.thanksEmbed = thanksEmbed;
+    this.thanksMsg = thanksMsg;
     this.thanksVideoUrl = thanksVideoUrl;
-    this.about = about;
-    this.pledges = pledges;
+    this.hasRss = hasRss;
+    this.hasSentRssNotify = hasSentRssNotify;
+    this.rssFeedTitle = rssFeedTitle;
+    this.rssArtworkUrl = rssArtworkUrl;
+    this.showEarnings = showEarnings;
+    this.url = url;
+    this.tiers = tiers;
     this.creator = creator;
-    this.rewards = rewards;
+    this.benefits = benefits;
     this.goals = goals;
   }
 
-  public int getPledgeSum() {
-    return pledgeSum;
+  public String getCreatedAt() {
+    return createdAt;
   }
 
   public String getCreationName() {
@@ -183,108 +183,108 @@ public class Campaign extends BaseResource {
     return discordServerId;
   }
 
-  public String getCreatedAt() {
-    return createdAt;
-  }
-
-  public boolean isPlural() {
-    return isPlural;
-  }
-
-  public String getMainVideoUrl() {
-    return mainVideoUrl;
-  }
-
-  public boolean isNsfw() {
-    return isNsfw;
-  }
-
-  public boolean isMonthly() {
-    return isMonthly;
-  }
-
-  public String getPublishedAt() {
-    return publishedAt;
-  }
-
-  public String getEarningsVisibility() {
-    return earningsVisibility;
-  }
-
-  public int getOutstandingPaymentAmountCents() {
-    return outstandingPaymentAmountCents;
+  public String getGoogleAnalyticsId() {
+    return googleAnalyticsId;
   }
 
   public String getImageSmallUrl() {
     return imageSmallUrl;
   }
 
-  public String getSummary() {
-    return summary;
-  }
-
-  public String getThanksMsg() {
-    return thanksMsg;
-  }
-
   public String getImageUrl() {
     return imageUrl;
-  }
-
-  public int getCreationCount() {
-    return creationCount;
-  }
-
-  public String getOneLiner() {
-    return oneLiner;
   }
 
   public boolean isChargedImmediately() {
     return isChargedImmediately;
   }
 
-  public int getPatronCount() {
-    return patronCount;
+  public boolean isMonthly() {
+    return isMonthly;
   }
 
-  public boolean isDisplayPatronGoals() {
-    return displayPatronGoals;
-  }
-
-  public String getPledgeUrl() {
-    return pledgeUrl;
-  }
-
-  public String getPayPerName() {
-    return payPerName;
-  }
-
-  public String getThanksEmbed() {
-    return thanksEmbed;
+  public boolean isNsfw() {
+    return isNsfw;
   }
 
   public String getMainVideoEmbed() {
     return mainVideoEmbed;
   }
 
+  public String getMainVideoUrl() {
+    return mainVideoUrl;
+  }
+
+  public String getOneLiner() {
+    return oneLiner;
+  }
+
+  public int getPatronCount() {
+    return patronCount;
+  }
+
+  public String getPayPerName() {
+    return payPerName;
+  }
+
+  public String getPledgeUrl() {
+    return pledgeUrl;
+  }
+
+  public String getPublishedAt() {
+    return publishedAt;
+  }
+
+  public String getSummary() {
+    return summary;
+  }
+
+  public String getThanksEmbed() {
+    return thanksEmbed;
+  }
+
+  public String getThanksMsg() {
+    return thanksMsg;
+  }
+
   public String getThanksVideoUrl() {
     return thanksVideoUrl;
   }
 
-  public String getAbout() {
-    return about;
+  public boolean isHasRss() {
+    return hasRss;
   }
 
-  public List<Pledge> getPledges() {
-    return pledges;
+  public boolean isHasSentRssNotify() {
+    return hasSentRssNotify;
+  }
+
+  public String getRssFeedTitle() {
+    return rssFeedTitle;
+  }
+
+  public String getRssArtworkUrl() {
+    return rssArtworkUrl;
+  }
+
+  public boolean isShowEarnings() {
+    return showEarnings;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public List<Tier> getTiers() {
+    return tiers;
   }
 
   public User getCreator() {
     return creator;
   }
 
-  public List<Reward> getRewards() {
-    return rewards;
+  public List<Benefit> getBenefits() {
+    return benefits;
   }
 
   public List<Goal> getGoals() {
