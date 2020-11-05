@@ -22,6 +22,8 @@ public class User extends BaseResource {
    */
   public enum UserField implements Field {
     FullName("full_name", true),
+    FirstName("first_name", true),
+    LastName("last_name", true),
     DiscordId("discord_id", true),
     Twitch("twitch", true),
     Vanity("vanity", true),
@@ -37,6 +39,8 @@ public class User extends BaseResource {
     Url("url", true),
     SocialConnections("social_connections", true),
     IsEmailVerified("is_email_verified", true),
+    CanSeeNsfw("can_see_nsfw", true),
+    HidePledges("hide_pledes", true),
     LikeCount("like_count", false),
     CommentCount("comment_count", false),
       ;
@@ -73,6 +77,8 @@ public class User extends BaseResource {
   }
 
   private String fullName;
+  private String firstName;
+  private String lastName;
   private String discordId;
   private String twitch;
   private String vanity;
@@ -88,17 +94,24 @@ public class User extends BaseResource {
   private String url;
   private SocialConnections socialConnections;
   private boolean isEmailVerified;
+  private boolean canSeeNsfw;
+  private boolean hidePledges;
 
   //Optional properties
   private Integer likeCount;
   private Integer commentCount;
 
-  @Relationship("pledges")
-  private List<Pledge> pledges;
+  @Relationship("memberships")
+  private List<Member> memberships;
+
+  @Relationship("campaign")
+  private Campaign campaign;
 
   @JsonCreator
   public User(
                @JsonProperty("full_name") String fullName,
+               @JsonProperty("first_name") String firstName,
+               @JsonProperty("list_name") String lastName,
                @JsonProperty("discord_id") String discordId,
                @JsonProperty("twitch") String twitch,
                @JsonProperty("vanity") String vanity,
@@ -114,11 +127,16 @@ public class User extends BaseResource {
                @JsonProperty("url") String url,
                @JsonProperty("social_connections") SocialConnections socialConnections,
                @JsonProperty("is_email_verified") boolean isEmailVerified,
+               @JsonProperty("can_see_nsfw") boolean canSeeNsfw,
+               @JsonProperty("hide_pledges") boolean hidePledges,
                @JsonProperty("like_count") Integer likeCount,
                @JsonProperty("comment_count") Integer commentCount,
-               @JsonProperty("pledges") List<Pledge> pledges
+               @JsonProperty("memberships") List<Member> memberships,
+               @JsonProperty("campaign") Campaign campaign
   ) {
     this.fullName = fullName;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.discordId = discordId;
     this.twitch = twitch;
     this.vanity = vanity;
@@ -134,13 +152,24 @@ public class User extends BaseResource {
     this.url = url;
     this.socialConnections = socialConnections;
     this.isEmailVerified = isEmailVerified;
+    this.canSeeNsfw = canSeeNsfw;
+    this.hidePledges = hidePledges;
     this.likeCount = likeCount;
     this.commentCount = commentCount;
-    this.pledges = pledges;
+    this.memberships = memberships;
+    this.campaign = campaign;
   }
 
   public String getFullName() {
     return fullName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
   }
 
   public String getDiscordId() {
@@ -203,6 +232,14 @@ public class User extends BaseResource {
     return isEmailVerified;
   }
 
+  public boolean isCanSeeNsfw() {
+    return canSeeNsfw;
+  }
+
+  public boolean isHidePledges() {
+    return hidePledges;
+  }
+
   /**
    * @return The number of likes of for this user, or null if this field wasn't requested
    */
@@ -217,7 +254,11 @@ public class User extends BaseResource {
     return commentCount;
   }
 
-  public List<Pledge> getPledges() {
-    return pledges;
+  public List<Member> getMemberships() {
+    return memberships;
+  }
+
+  public Campaign getCampaign() {
+    return campaign;
   }
 }
