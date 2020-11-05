@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 
 @Type("pledge")
 public class Pledge extends BaseResource {
-  
+
   public enum PledgeField implements Field {
     AmountCents("amount_cents", true),
     CreatedAt("created_at", true),
     DeclinedSince("declined_since", true),
+    Currency("currency", true),
     PatronPaysFees("patron_pays_fees", true),
     PledgeCapCents("pledge_cap_cents", true),
     TotalHistoricalAmountCents("total_historical_amount_cents", false),
@@ -52,6 +53,7 @@ public class Pledge extends BaseResource {
   private int amountCents;
   private String createdAt;
   private String declinedSince;
+  private String currency;
   private boolean patronPaysFees;
   private int pledgeCapCents;
 
@@ -73,6 +75,7 @@ public class Pledge extends BaseResource {
                  @JsonProperty("amount_cents") int amount_cents,
                  @JsonProperty("created_at") String created_at,
                  @JsonProperty("declined_since") String declined_since,
+                 @JsonProperty("currency") String currency,
                  @JsonProperty("patron_pays_fees") boolean patron_pays_fees,
                  @JsonProperty("pledge_cap_cents") int pledge_cap_cents,
                  @JsonProperty("total_historical_amount_cents") Integer total_historical_amount_cents,
@@ -85,6 +88,7 @@ public class Pledge extends BaseResource {
     this.amountCents = amount_cents;
     this.createdAt = created_at;
     this.declinedSince = declined_since;
+    this.currency = currency;
     this.patronPaysFees = patron_pays_fees;
     this.pledgeCapCents = pledge_cap_cents;
     this.totalHistoricalAmountCents = total_historical_amount_cents;
@@ -105,6 +109,10 @@ public class Pledge extends BaseResource {
 
   public String getDeclinedSince() {
     return declinedSince;
+  }
+
+  public String getCurrency() {
+    return currency;
   }
 
   public boolean getPatronPaysFees() {
