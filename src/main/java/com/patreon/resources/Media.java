@@ -1,47 +1,43 @@
 package com.patreon.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jasminb.jsonapi.annotations.Relationship;
 import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
-@Type("tier")
-public class Tier extends BaseResource {
-  
-  public enum TierField implements Field {
-    AmountCents("amount_cents", true),
+@Type("media")
+public class Media extends BaseResource {
+
+  public enum MediaEvent implements Field {
+    FileName("file_name", true),
+    SizeBytes("size_bytes", true),
+    Mimetype("mimetype", true),
+    State("state", true),
+    OwnerType("owner_type", true),
+    OwnerId("owner_id", true),
+    OwnerRelationship("owner_relationship", true),
+    UploadExpiresAt("upload_expires_at", true),
+    UploadUrl("upload_url", true),
+    UploadParameters("upload_parameters", true),
+    DownloadUrl("download_url", true),
+    ImageUrls("image_urls", true),
     CreatedAt("created_at", true),
-    Description("description", true),
-    Remaining("remaining", true),
-    RequiresShipping("requires_shipping", true),
-    Url("url", true),
-    UserLimit("user_limit", true),
-    EditedAt("edited_at", true),
-    PatronCount("patron_count", true),
-    PostCount("post_count", true),
-    Published("published", true),
-    PublishedAt("published_at", true),
-    ImageUrl("image_url", true),
-    DiscordRoleIds("discord_role_ids", true),
-    Title("title", true),
-    UnpublishedAt("unpublished_at", true),
+    Metadata("metadata", true),
     ;
 
     private final String propertyName;
     private final boolean isDefault;
 
-    TierField(String propertyName, boolean isDefault) {
+    MediaEvent(String propertyName, boolean isDefault) {
       this.propertyName = propertyName;
       this.isDefault = isDefault;
     }
 
-    public static Collection<TierField> getDefaultFields() {
+    public static Collection<MediaEvent> getDefaultFields() {
       return Arrays.stream(values()).filter(Field::isDefault).collect(Collectors.toList());
     }
 
@@ -56,145 +52,106 @@ public class Tier extends BaseResource {
     }
   }
 
-  private int amountCents;
+  private String fileName;
+  private int sizeBytes;
+  private String mimetype;
+  private String state;
+  private String ownerType;
+  private String ownerId;
+  private String ownerRelationship;
+  private String uploadExpiresAt;
+  private String uploadUrl;
+  private Object uploadParameters;
+  private String downloadUrl;
+  private Object imageUrls;
   private String createdAt;
-  private String description;
-  private float remaining;
-  private boolean requiresShipping;
-  private String url;
-  private Integer userLimit;
-  private String editedAt;
-  private int patronCount;
-  private int postCount;
-  private boolean published;
-  private String publishedAt;
-  private String imageUrl;
-  private List<String> discordRoleIds;
-  private String title;
-  private String unpublishedAt;
+  private Object metadata;
 
-  @Relationship("campaign")
-  private Campaign campaign;
-
-  @Relationship("tier_image")
-  private Media tierImage;
-
-  @Relationship("benefits")
-  private List<Benefit> benefits;
-
-  public Tier(
-                 @JsonProperty("amount_cents") int amountCents,
-                 @JsonProperty("created_at") String createdAt,
-                 @JsonProperty("description") String description,
-                 @JsonProperty("remaining") float remaining,
-                 @JsonProperty("requires_shipping") boolean requiresShipping,
-                 @JsonProperty("url") String url,
-                 @JsonProperty("user_limit") Integer userLimit,
-                 @JsonProperty("edited_at") String editedAt,
-                 @JsonProperty("patron_count") int patronCount,
-                 @JsonProperty("post_count") int postCount,
-                 @JsonProperty("published") boolean published,
-                 @JsonProperty("published_at") String publishedAt,
-                 @JsonProperty("image_url") String imageUrl,
-                 @JsonProperty("discord_role_ids") List<String> discordRoleIds,
-                 @JsonProperty("title") String title,
-                 @JsonProperty("unpublished_at") String unpublishedAt,
-                 @JsonProperty("campaign") Campaign campaign,
-                 @JsonProperty("tier_image") Media tierImage,
-                 @JsonProperty("benefits") List<Benefit> benefits
+  public Media(
+    @JsonProperty("file_name") String fileName,
+    @JsonProperty("size_bytes") int sizeBytes,
+    @JsonProperty("mimetype") String mimetype,
+    @JsonProperty("state") String state,
+    @JsonProperty("owner_type") String ownerType,
+    @JsonProperty("owner_id") String ownerId,
+    @JsonProperty("owner_relationship") String ownerRelationship,
+    @JsonProperty("upload_expires_at") String uploadExpiresAt,
+    @JsonProperty("upload_url") String uploadUrl,
+    @JsonProperty("upload_parameters") Object uploadParameters,
+    @JsonProperty("download_url") String downloadUrl,
+    @JsonProperty("image_urls") Object imageUrls,
+    @JsonProperty("created_at") String createdAt,
+    @JsonProperty("metadata") Object metadata
   ) {
-    this.amountCents = amountCents;
+    this.fileName = fileName;
+    this.sizeBytes = sizeBytes;
+    this.mimetype = mimetype;
+    this.state = state;
+    this.ownerType = ownerType;
+    this.ownerId = ownerId;
+    this.ownerRelationship = ownerRelationship;
+    this.uploadExpiresAt = uploadExpiresAt;
+    this.uploadUrl = uploadUrl;
+    this.uploadParameters = uploadParameters;
+    this.downloadUrl = downloadUrl;
+    this.imageUrls = imageUrls;
     this.createdAt = createdAt;
-    this.description = description;
-    this.remaining = remaining;
-    this.requiresShipping = requiresShipping;
-    this.url = url;
-    this.userLimit = userLimit;
-    this.editedAt = editedAt;
-    this.patronCount = patronCount;
-    this.postCount = postCount;
-    this.published = published;
-    this.publishedAt = publishedAt;
-    this.imageUrl = imageUrl;
-    this.discordRoleIds = discordRoleIds;
-    this.title = title;
-    this.unpublishedAt = unpublishedAt;
-    this.campaign = campaign;
+    this.metadata = metadata;
   }
 
-  public int getAmountCents() {
-    return amountCents;
+  public String getFileName() {
+    return fileName;
+  }
+
+  public int getSizeBytes() {
+    return sizeBytes;
+  }
+
+  public String getMimetype() {
+    return mimetype;
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public String getOwnerType() {
+    return ownerType;
+  }
+
+  public String getOwnerId() {
+    return ownerId;
+  }
+
+  public String getOwnerRelationship() {
+    return ownerRelationship;
+  }
+
+  public String getUploadExpiresAt() {
+    return uploadExpiresAt;
+  }
+
+  public String getUploadUrl() {
+    return uploadUrl;
+  }
+
+  public Object getUploadParameters() {
+    return uploadParameters;
+  }
+
+  public String getDownloadUrl() {
+    return downloadUrl;
+  }
+
+  public Object getImageUrls() {
+    return imageUrls;
   }
 
   public String getCreatedAt() {
     return createdAt;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
-  public float getRemaining() {
-    return remaining;
-  }
-
-  public boolean isRequiresShipping() {
-    return requiresShipping;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public Integer getUserLimit() {
-    return userLimit;
-  }
-
-  public String getEditedAt() {
-    return editedAt;
-  }
-
-  public int getPatronCount() {
-    return patronCount;
-  }
-
-  public int getPostCount() {
-    return postCount;
-  }
-
-  public boolean isPublished() {
-    return published;
-  }
-
-  public String getPublishedAt() {
-    return publishedAt;
-  }
-
-  public String getImageUrl() {
-    return imageUrl;
-  }
-
-  public List<String> getDiscordRoleIds() {
-    return discordRoleIds;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public String getUnpublishedAt() {
-    return unpublishedAt;
-  }
-
-  public Campaign getCampaign() {
-    return campaign;
-  }
-
-  public Media getTierImage() {
-    return tierImage;
-  }
-
-  public List<Benefit> getBenefits() {
-    return benefits;
+  public Object getMetadata() {
+    return metadata;
   }
 }

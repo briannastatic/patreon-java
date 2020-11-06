@@ -13,16 +13,16 @@ import static com.patreon.PatreonAPI.BASE_URI;
 public class RequestUtil {
 
   public InputStream request(String pathSuffix, String accessToken) throws IOException {
-      String prefix = BASE_URI + "/api/oauth2/v2/";
-      URL url = new URL(prefix.concat(pathSuffix));
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestProperty("Authorization", "Bearer ".concat(accessToken));
-      connection.setRequestProperty("User-Agent",
-        String.format(
-          "Patreon-Java, version %s, platform %s %s",
-          getVersion(),
-          System.getProperty("os.name"),
-          System.getProperty("os.version")));
+    String prefix = BASE_URI + "/api/oauth2/v2/";
+    URL url = new URL(prefix.concat(pathSuffix));
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setRequestProperty("Authorization", "Bearer ".concat(accessToken));
+    connection.setRequestProperty("User-Agent",
+      String.format(
+        "Patreon-Java, version %s, platform %s %s",
+        getVersion(),
+        System.getProperty("os.name"),
+        System.getProperty("os.version")));
     return connection.getInputStream();
   }
 

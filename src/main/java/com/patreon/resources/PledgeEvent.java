@@ -22,7 +22,7 @@ public class PledgeEvent extends BaseResource {
     TierId("tier_id", true),
     AmountCents("amount_cents", true),
     CurrencyCode("currency_code", true),
-      ;
+    ;
 
     /**
      * The field's name from the API in JSON

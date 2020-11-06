@@ -6,11 +6,9 @@ import com.github.jasminb.jsonapi.annotations.Relationship;
 import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
-import com.patreon.resources.shared.SocialConnections;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +20,7 @@ public class Member extends BaseResource {
     IsFollower("is_follower", true),
     FullName("full_name", true),
     Email("email", true),
-    PledgeRelationshipStart("pledge_relationship-start", true),
+    PledgeRelationshipStart("pledge_relationship_start", true),
     LifetimeSupportCents("lifetime_support_cents", true),
     CampaignLifetimeSupportCents("campaign_lifetime_support_cents", true),
     CurrentlyEntitledAmountCents("currently_entitled_amount_cents", true),
@@ -93,7 +91,7 @@ public class Member extends BaseResource {
 
   @JsonCreator
   public Member(
-    @JsonProperty("parton_status") String patronStatus,
+    @JsonProperty("patron_status") String patronStatus,
     @JsonProperty("is_follower") boolean isFollower,
     @JsonProperty("full_name") String fullName,
     @JsonProperty("email") String email,

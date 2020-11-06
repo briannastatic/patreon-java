@@ -48,12 +48,12 @@ public class PatreonOAuth {
 
   public TokensResponse getTokens(String code) throws IOException {
     Connection requestInfo = Jsoup.connect(PatreonAPI.BASE_URI + "/api/oauth2/token")
-                               .data("grant_type", GRANT_TYPE_AUTHORIZATION)
-                               .data("code", code)
-                               .data("client_id", clientID)
-                               .data("client_secret", clientSecret)
-                               .data("redirect_uri", redirectUri)
-                               .ignoreContentType(true);
+      .data("grant_type", GRANT_TYPE_AUTHORIZATION)
+      .data("code", code)
+      .data("client_id", clientID)
+      .data("client_secret", clientSecret)
+      .data("redirect_uri", redirectUri)
+      .ignoreContentType(true);
     String response = requestInfo.post().body().text();
 
     return toObject(response, TokensResponse.class);
@@ -61,11 +61,11 @@ public class PatreonOAuth {
 
   public TokensResponse refreshTokens(String refreshToken) throws IOException {
     Connection requestInfo = Jsoup.connect(PatreonAPI.BASE_URI + "/api/oauth2/token")
-                               .data("grant_type", GRANT_TYPE_TOKEN_REFRESH)
-                               .data("client_id", clientID)
-                               .data("client_secret", clientSecret)
-                               .data("refresh_token", refreshToken)
-                               .ignoreContentType(true);
+      .data("grant_type", GRANT_TYPE_TOKEN_REFRESH)
+      .data("client_id", clientID)
+      .data("client_secret", clientSecret)
+      .data("refresh_token", refreshToken)
+      .ignoreContentType(true);
     String response = requestInfo.post().body().text();
     return toObject(response, TokensResponse.class);
   }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Type("tier")
 public class Tier extends BaseResource {
-  
+
   public enum TierField implements Field {
     AmountCents("amount_cents", true),
     CreatedAt("created_at", true),
@@ -83,25 +83,25 @@ public class Tier extends BaseResource {
   private List<Benefit> benefits;
 
   public Tier(
-                 @JsonProperty("amount_cents") int amountCents,
-                 @JsonProperty("created_at") String createdAt,
-                 @JsonProperty("description") String description,
-                 @JsonProperty("remaining") float remaining,
-                 @JsonProperty("requires_shipping") boolean requiresShipping,
-                 @JsonProperty("url") String url,
-                 @JsonProperty("user_limit") Integer userLimit,
-                 @JsonProperty("edited_at") String editedAt,
-                 @JsonProperty("patron_count") int patronCount,
-                 @JsonProperty("post_count") int postCount,
-                 @JsonProperty("published") boolean published,
-                 @JsonProperty("published_at") String publishedAt,
-                 @JsonProperty("image_url") String imageUrl,
-                 @JsonProperty("discord_role_ids") List<String> discordRoleIds,
-                 @JsonProperty("title") String title,
-                 @JsonProperty("unpublished_at") String unpublishedAt,
-                 @JsonProperty("campaign") Campaign campaign,
-                 @JsonProperty("tier_image") Media tierImage,
-                 @JsonProperty("benefits") List<Benefit> benefits
+    @JsonProperty("amount_cents") int amountCents,
+    @JsonProperty("created_at") String createdAt,
+    @JsonProperty("description") String description,
+    @JsonProperty("remaining") float remaining,
+    @JsonProperty("requires_shipping") boolean requiresShipping,
+    @JsonProperty("url") String url,
+    @JsonProperty("user_limit") Integer userLimit,
+    @JsonProperty("edited_at") String editedAt,
+    @JsonProperty("patron_count") int patronCount,
+    @JsonProperty("post_count") int postCount,
+    @JsonProperty("published") boolean published,
+    @JsonProperty("published_at") String publishedAt,
+    @JsonProperty("image_url") String imageUrl,
+    @JsonProperty("discord_role_ids") List<String> discordRoleIds,
+    @JsonProperty("title") String title,
+    @JsonProperty("unpublished_at") String unpublishedAt,
+    @JsonProperty("campaign") Campaign campaign,
+    @JsonProperty("tier_image") Media tierImage,
+    @JsonProperty("benefits") List<Benefit> benefits
   ) {
     this.amountCents = amountCents;
     this.createdAt = createdAt;

@@ -6,30 +6,25 @@ import com.github.jasminb.jsonapi.annotations.Relationship;
 import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
-import com.patreon.resources.shared.SocialConnections;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Type("member")
-public class Member extends BaseResource {
+@Type("address")
+public class Address extends BaseResource {
 
   public enum MemberField implements Field {
-    PatronStatus("patron_status", true),
-    IsFollower("is_follower", true),
-    FullName("full_name", true),
-    Email("email", true),
-    PledgeRelationshipStart("pledge_relationship-start", true),
-    LifetimeSupportCents("lifetime_support_cents", true),
-    CampaignLifetimeSupportCents("campaign_lifetime_support_cents", true),
-    CurrentlyEntitledAmountCents("currently_entitled_amount_cents", true),
-    LastChargeDate("last_charge_date", true),
-    LastChargeStatus("last_charge_status", true),
-    Note("note", true),
-    WillPayAmountCents("will_pay_amount_cents", true),
+    Addressee("addressee", true),
+    Line1("line_1", true),
+    Line2("line_2", true),
+    PostalCode("postal_code", true),
+    City("city", true),
+    State("state", true),
+    County("country", true),
+    PhoneNumber("phone_number", true),
+    CreatedAt("created_at", true),
     ;
 
     /**
@@ -63,138 +58,90 @@ public class Member extends BaseResource {
 
   }
 
-  private String patronStatus;
-  private boolean isFollower;
-  private String fullName;
-  private String email;
-  private String pledgeRelationshipStart;
-  private int lifetimeSupportCents;
-  private int campaignLifetimeSupportCents;
-  private int currentlyEntitledAmountCents;
-  private String lastChargeDate;
-  private String lastChargeStatus;
-  private String note;
-  private int willPayAmountCents;
-
-  @Relationship("address")
-  private Address address;
-
-  @Relationship("campaign")
-  private Campaign campaign;
-
-  @Relationship("currently_entitled_tiers")
-  private List<Tier> currentlyEntitledTiers;
+  private String addressee;
+  private String line1;
+  private String line2;
+  private String postalCode;
+  private String city;
+  private String state;
+  private String county;
+  private String phoneNumber;
+  private String createdAt;
 
   @Relationship("user")
   private User user;
 
-  @Relationship("pledge_history")
-  private List<PledgeEvent> pledgeHistory;
+  @Relationship("campaigns")
+  private List<Campaign> campaigns;
 
   @JsonCreator
-  public Member(
-    @JsonProperty("parton_status") String patronStatus,
-    @JsonProperty("is_follower") boolean isFollower,
-    @JsonProperty("full_name") String fullName,
-    @JsonProperty("email") String email,
-    @JsonProperty("pledge_relationship_start") String pledgeRelationshipStart,
-    @JsonProperty("lifetime_support_cents") int lifetimeSupportCents,
-    @JsonProperty("campaign_lifetime_support_cents") int campaignLifetimeSupportCents,
-    @JsonProperty("currently_entitled_amount_cents") int currentlyEntitledAmountCents,
-    @JsonProperty("last_charge_date") String lastChargeDate,
-    @JsonProperty("last_charge_status") String lastChargeStatus,
-    @JsonProperty("note") String note,
-    @JsonProperty("will_pay_amount_cents") int willPayAmountCents,
-    @JsonProperty("address") Address address,
-    @JsonProperty("campaign") Campaign campaign,
-    @JsonProperty("currently_entitled_tiers") List<Tier> currentlyEntitledTiers,
+  public Address(
+    @JsonProperty("addressee") String addressee,
+    @JsonProperty("line_1") String line1,
+    @JsonProperty("line_2") String line2,
+    @JsonProperty("postal_code") String postalCode,
+    @JsonProperty("city") String city,
+    @JsonProperty("state") String state,
+    @JsonProperty("county") String county,
+    @JsonProperty("phone_number") String phoneNumber,
+    @JsonProperty("created_at") String createdAt,
     @JsonProperty("user") User user,
-    @JsonProperty("pledge_history") List<PledgeEvent> pledgeHistory
+    @JsonProperty("campaigns") List<Campaign> campaigns
   ) {
-    this.patronStatus = patronStatus;
-    this.isFollower = isFollower;
-    this.fullName = fullName;
-    this.email = email;
-    this.pledgeRelationshipStart = pledgeRelationshipStart;
-    this.lifetimeSupportCents = lifetimeSupportCents;
-    this.campaignLifetimeSupportCents = campaignLifetimeSupportCents;
-    this.currentlyEntitledAmountCents = currentlyEntitledAmountCents;
-    this.lastChargeDate = lastChargeDate;
-    this.lastChargeStatus = lastChargeStatus;
-    this.note = note;
-    this.willPayAmountCents = willPayAmountCents;
-    this.address = address;
-    this.campaign = campaign;
-    this.currentlyEntitledTiers = currentlyEntitledTiers;
+    this.addressee = addressee;
+    this.line1 = line1;
+    this.line2 = line2;
+    this.postalCode = postalCode;
+    this.city = city;
+    this.state = state;
+    this.county = county;
+    this.phoneNumber = phoneNumber;
+    this.createdAt = createdAt;
     this.user = user;
-    this.pledgeHistory = pledgeHistory;
+    this.campaigns = campaigns;
   }
 
-  public String getPatronStatus() {
-    return patronStatus;
+  public String getAddressee() {
+    return addressee;
   }
 
-  public boolean isFollower() {
-    return isFollower;
+  public String getLine1() {
+    return line1;
   }
 
-  public String getFullName() {
-    return fullName;
+  public String getLine2() {
+    return line2;
   }
 
-  public String getEmail() {
-    return email;
+  public String getPostalCode() {
+    return postalCode;
   }
 
-  public String getPledgeRelationshipStart() {
-    return pledgeRelationshipStart;
+  public String getCity() {
+    return city;
   }
 
-  public int getLifetimeSupportCents() {
-    return lifetimeSupportCents;
+  public String getState() {
+    return state;
   }
 
-  public int getCampaignLifetimeSupportCents() {
-    return campaignLifetimeSupportCents;
+  public String getCounty() {
+    return county;
   }
 
-  public int getCurrentlyEntitledAmountCents() {
-    return currentlyEntitledAmountCents;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  public String getLastChargeDate() {
-    return lastChargeDate;
-  }
-
-  public String getLastChargeStatus() {
-    return lastChargeStatus;
-  }
-
-  public String getNote() {
-    return note;
-  }
-
-  public int getWillPayAmountCents() {
-    return willPayAmountCents;
-  }
-
-  public Address getAddress() {
-    return address;
-  }
-
-  public Campaign getCampaign() {
-    return campaign;
-  }
-
-  public List<Tier> getCurrentlyEntitledTiers() {
-    return currentlyEntitledTiers;
+  public String getCreatedAt() {
+    return createdAt;
   }
 
   public User getUser() {
     return user;
   }
 
-  public List<PledgeEvent> getPledgeHistory() {
-    return pledgeHistory;
+  public List<Campaign> getCampaigns() {
+    return campaigns;
   }
 }

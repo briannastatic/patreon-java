@@ -53,6 +53,8 @@ public class SocialConnections {
       return scopes;
     }
 
-    public String getUrl() {return url;}
+    public String getUrl() {
+      return url;
+    }
   }
 }

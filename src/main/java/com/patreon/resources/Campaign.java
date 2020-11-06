@@ -7,7 +7,6 @@ import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Type("campaign")
 public class Campaign extends BaseResource {
-  
+
   public enum CampaignField implements Field {
     CreatedAt("created_at", true),
     CreationName("creation_name", true),
@@ -108,36 +107,36 @@ public class Campaign extends BaseResource {
   private List<Goal> goals;
 
   public Campaign(
-                   @JsonProperty("created_at") String createdAt,
-                   @JsonProperty("creation_name") String creationName,
-                   @JsonProperty("discord_server_id") String discordServerId,
-                   @JsonProperty("google_analytics_id") String googleAnalyticsId,
-                   @JsonProperty("image_small_url") String imageSmallUrl,
-                   @JsonProperty("image_url") String imageUrl,
-                   @JsonProperty("is_charged_immediately") boolean isChargedImmediately,
-                   @JsonProperty("is_monthly") boolean isMonthly,
-                   @JsonProperty("is_nsfw") boolean isNsfw,
-                   @JsonProperty("main_video_embed") String mainVideoEmbed,
-                   @JsonProperty("main_video_url") String mainVideoUrl,
-                   @JsonProperty("one_liner") String oneLiner,
-                   @JsonProperty("patron_count") int patronCount,
-                   @JsonProperty("pay_per_name") String payPerName,
-                   @JsonProperty("pledge_url") String pledgeUrl,
-                   @JsonProperty("published_at") String publishedAt,
-                   @JsonProperty("summary") String summary,
-                   @JsonProperty("thanks_embed") String thanksEmbed,
-                   @JsonProperty("thanks_msg") String thanksMsg,
-                   @JsonProperty("thanks_video_url") String thanksVideoUrl,
-                   @JsonProperty("has_rss") boolean hasRss,
-                   @JsonProperty("has_sent_rss_notify") boolean hasSentRssNotify,
-                   @JsonProperty("rss_feed_title") String rssFeedTitle,
-                   @JsonProperty("rss_artwork_url") String rssArtworkUrl,
-                   @JsonProperty("show_earnings") boolean showEarnings,
-                   @JsonProperty("url") String url,
-                   @JsonProperty("tiers") List<Tier> tiers,
-                   @JsonProperty("creator") User creator,
-                   @JsonProperty("benefits") List<Benefit> benefits,
-                   @JsonProperty("goals") List<Goal> goals
+    @JsonProperty("created_at") String createdAt,
+    @JsonProperty("creation_name") String creationName,
+    @JsonProperty("discord_server_id") String discordServerId,
+    @JsonProperty("google_analytics_id") String googleAnalyticsId,
+    @JsonProperty("image_small_url") String imageSmallUrl,
+    @JsonProperty("image_url") String imageUrl,
+    @JsonProperty("is_charged_immediately") boolean isChargedImmediately,
+    @JsonProperty("is_monthly") boolean isMonthly,
+    @JsonProperty("is_nsfw") boolean isNsfw,
+    @JsonProperty("main_video_embed") String mainVideoEmbed,
+    @JsonProperty("main_video_url") String mainVideoUrl,
+    @JsonProperty("one_liner") String oneLiner,
+    @JsonProperty("patron_count") int patronCount,
+    @JsonProperty("pay_per_name") String payPerName,
+    @JsonProperty("pledge_url") String pledgeUrl,
+    @JsonProperty("published_at") String publishedAt,
+    @JsonProperty("summary") String summary,
+    @JsonProperty("thanks_embed") String thanksEmbed,
+    @JsonProperty("thanks_msg") String thanksMsg,
+    @JsonProperty("thanks_video_url") String thanksVideoUrl,
+    @JsonProperty("has_rss") boolean hasRss,
+    @JsonProperty("has_sent_rss_notify") boolean hasSentRssNotify,
+    @JsonProperty("rss_feed_title") String rssFeedTitle,
+    @JsonProperty("rss_artwork_url") String rssArtworkUrl,
+    @JsonProperty("show_earnings") boolean showEarnings,
+    @JsonProperty("url") String url,
+    @JsonProperty("tiers") List<Tier> tiers,
+    @JsonProperty("creator") User creator,
+    @JsonProperty("benefits") List<Benefit> benefits,
+    @JsonProperty("goals") List<Goal> goals
   ) {
     this.createdAt = createdAt;
     this.creationName = creationName;
