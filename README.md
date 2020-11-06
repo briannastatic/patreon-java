@@ -6,7 +6,7 @@ Get the artifact from [Maven](http://repo.songoda.com/repository/public/)
 <dependency>
     <groupId>com.patreon</groupId>
     <artifactId>patreon</artifactId>
-    <version>1</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
