@@ -75,6 +75,17 @@ public class PatreonAPI {
     this.converter.enableDeserializationOption(DeserializationFeature.ALLOW_UNKNOWN_INCLUSIONS);
   }
 
+  public JSONAPIDocument<User> fetchCurrentUser() throws IOException {
+    URIBuilder pathBuilder = new URIBuilder().setPath("identity");
+
+    addFieldsParam(pathBuilder, User.class, new HashSet<>(User.UserField.getDefaultFields()));
+
+    return converter.readDocument(
+      getDataStream(pathBuilder.toString()),
+      User.class
+    );
+  }
+
   public JSONAPIDocument<List<Campaign>> fetchCampaigns() throws IOException {
     URIBuilder pathBuilder = new URIBuilder()
       .setPath("campaigns")
