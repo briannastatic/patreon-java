@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Type("address")
 public class Address extends BaseResource {
 
-  public enum MemberField implements Field {
+  public enum AddressField implements Field {
     Addressee("addressee", true),
     Line1("line_1", true),
     Line2("line_2", true),
@@ -37,7 +37,7 @@ public class Address extends BaseResource {
      */
     public final boolean isDefault;
 
-    MemberField(String propertyName, boolean isDefault) {
+    AddressField(String propertyName, boolean isDefault) {
       this.propertyName = propertyName;
       this.isDefault = isDefault;
     }
@@ -52,7 +52,7 @@ public class Address extends BaseResource {
       return this.isDefault;
     }
 
-    public static Collection<MemberField> getDefaultFields() {
+    public static Collection<AddressField> getDefaultFields() {
       return Arrays.stream(values()).filter(Field::isDefault).collect(Collectors.toList());
     }
 

@@ -7,6 +7,7 @@ import com.github.jasminb.jsonapi.JSONAPIDocument;
 import com.github.jasminb.jsonapi.Link;
 import com.github.jasminb.jsonapi.Links;
 import com.github.jasminb.jsonapi.ResourceConverter;
+import com.patreon.resources.Address;
 import com.patreon.resources.Campaign;
 import com.patreon.resources.Member;
 import com.patreon.resources.RequestUtil;
@@ -125,6 +126,7 @@ public class PatreonAPI {
     addFieldsParam(pathBuilder, Member.class, new HashSet<>(Member.MemberField.getDefaultFields()));
     addFieldsParam(pathBuilder, User.class, new HashSet<>(User.UserField.getDefaultFields()));
     addFieldsParam(pathBuilder, Tier.class, new HashSet<>(Tier.TierField.getDefaultFields()));
+    addFieldsParam(pathBuilder, Address.class, new HashSet<>(Address.AddressField.getDefaultFields()));
 
     return converter.readDocumentCollection(
       getDataStream(pathBuilder.toString()),
