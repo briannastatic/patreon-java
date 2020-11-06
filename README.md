@@ -28,7 +28,7 @@ import com.patreon.PatreonAPI;
 import com.patreon.PatreonOAuth;
 import com.patreon.PatreonOAuth;
 import com.patreon.resources.User;
-import com.patreon.resources.Pledge;
+import com.patreon.resources.Member;
 
     ...
 
@@ -44,13 +44,13 @@ PatreonOAuth.TokensResponse tokens = oauthClient.getTokens(code);
 String accessToken = tokens.getAccessToken();
 
 PatreonAPI apiClient = new PatreonAPI(accessToken);
-JSONAPIDocument<User> userResponse = apiClient.fetchUser();
+JSONAPIDocument<User> userResponse = apiClient.fetchCurrentUser();
 User user = userResponse.get();
 Log.i(user.getFullName());
-List<Pledge> pledges = user.getPledges()
-if (pledges != null && pledges.size() > 0) {
-    Pledge pledge = pledges.get(0);
-    Log.i(pledge.getAmountCents());
+List<Member> memberships = user.getMemberships();
+if (memberships != null && memberships.size() > 0) {
+    Member membership = memberships.get(0);
+    Log.i(membership.getPatronStatus());
 }
 // You should save the user's PatreonOAuth.TokensResponse in your database
 // (for refreshing their Patreon data whenever you like),
