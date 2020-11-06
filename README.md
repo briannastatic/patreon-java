@@ -20,7 +20,7 @@ This will provide you with a `client_id` and a `client_secret`.
 
 Step 2. Use this library
 ---
-(Outdated | Feel free to make a PR and update this, I will however get to it eventually.)
+
 ## For the Log In with Patreon flow
 ```java
 import com.github.jasminb.jsonapi.JSONAPIDocument;
