@@ -1,14 +1,12 @@
 # patreon-java
-Interact with the Patreon API via OAuth.
+Interact with the Patreon v2 API via OAuth.
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.patreon/patreon/badge.svg)]
-
-Get the artifact from [Maven](http://search.maven.org/#search|ga|1|g%3A%22com.patreon%22%20AND%20a%3A%22patreon%22)
+Get the artifact from [Maven](http://repo.songoda.com/repository/public/)
 ```xml
 <dependency>
     <groupId>com.patreon</groupId>
     <artifactId>patreon</artifactId>
-    <version>0.4.2</version>
+    <version>1</version>
 </dependency>
 ```
 
@@ -22,7 +20,7 @@ This will provide you with a `client_id` and a `client_secret`.
 
 Step 2. Use this library
 ---
-
+(Outdated | Feel free to make a PR and update this, I will however get to it eventually.)
 ## For the Log In with Patreon flow
 ```java
 import com.github.jasminb.jsonapi.JSONAPIDocument;

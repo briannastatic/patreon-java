@@ -105,6 +105,12 @@ and https://issues.apache.org/jira/browse/SUREFIRE-1588 -->
             <organization>Patreon</organization>
             <organizationUrl>http://www.patreon.com</organizationUrl>
         </developer>
+        <developer>
+            <name>Brianna OKeefe</name>
+            <email>bri@songoda.com</email>
+            <organization>Songoda LLC</organization>
+            <organizationUrl>http://www.songoda.com</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
