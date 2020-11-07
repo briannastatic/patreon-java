@@ -22,7 +22,7 @@ public class Address extends BaseResource {
     PostalCode("postal_code", true),
     City("city", true),
     State("state", true),
-    County("country", true),
+    Country("country", true),
     PhoneNumber("phone_number", true),
     CreatedAt("created_at", true),
     ;
@@ -64,7 +64,7 @@ public class Address extends BaseResource {
   private String postalCode;
   private String city;
   private String state;
-  private String county;
+  private String country;
   private String phoneNumber;
   private String createdAt;
 
@@ -82,7 +82,7 @@ public class Address extends BaseResource {
     @JsonProperty("postal_code") String postalCode,
     @JsonProperty("city") String city,
     @JsonProperty("state") String state,
-    @JsonProperty("county") String county,
+    @JsonProperty("country") String country,
     @JsonProperty("phone_number") String phoneNumber,
     @JsonProperty("created_at") String createdAt,
     @JsonProperty("user") User user,
@@ -94,7 +94,7 @@ public class Address extends BaseResource {
     this.postalCode = postalCode;
     this.city = city;
     this.state = state;
-    this.county = county;
+    this.country = country;
     this.phoneNumber = phoneNumber;
     this.createdAt = createdAt;
     this.user = user;
@@ -125,8 +125,8 @@ public class Address extends BaseResource {
     return state;
   }
 
-  public String getCounty() {
-    return county;
+  public String getCountry() {
+    return country;
   }
 
   public String getPhoneNumber() {
